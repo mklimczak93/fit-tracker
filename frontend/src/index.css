@@ -1,0 +1,464 @@
+/* ---------------------------------------------------------------------------- */
+/* --- --- --- --- --- --- --- --- --- BASE --- --- --- --- --- --- --- --- --- */
+/* ---------------------------------------------------------------------------- */
+
+/* --- COMMON BREAKPOINTS --- */
+/* Laptop screens */
+@media only screen and (max-height: 900px) {}
+/* Medium devices / tablets 770 - 1030 width*/
+@media only screen and (max-width: 1030px) {}
+/* Medium devices / tablets 500px - 770px */
+@media only screen and (max-width: 770px) {}
+/* Small devices (phones, 500px and down) */
+@media only screen and (max-width: 500px) {}
+
+/* --- custom font --- */
+@font-face {
+    font-family: "Violet Sans";
+    src: url('assets/fonts/violet-sans.ttf') format("truetype");;
+    font-weight: normal;
+}
+
+/* --- ROOT --- */
+:root {
+    /* main colors */
+    --main-background:      #ffffff;
+    --main-box-color:       #EDECE9;
+    --main-text-color:      #2B2727;
+    --main-accent:          #FD6738;
+    --inset-color:          #BDBCBA;
+    /* font & others */
+    --main-font:            normal 12px 'Violet Sans', serif;
+    --border-radius:        15px;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --main-background:  #000000;
+        --main-box-color:   #343232;
+        --main-text-color:  #fff;
+    } 
+}
+
+/* ------------------------------------------------------------------------------------- */
+/* --- --- --- --- --- --- --- --- --- MAIN ELEMENTS --- --- --- --- --- --- --- --- --- */
+/* ------------------------------------------------------------------------------------- */
+html, body {
+    margin: 0px;
+    padding: 0px;
+    font: var(--main-font);
+    color: var(--main-text-color);
+  }
+
+#root {
+    max-height: 100svh;
+    max-width: 100svw;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+
+.root-layout {
+    padding: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+p {
+    font: var(--main-font);
+    color: var(--main-text-color);
+    letter-spacing: 1px;
+    margin: 0px;
+    padding: 0px;
+    font-size: 12px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font: 'Violet Sans';
+    color: var(--main-text-color);
+    text-transform: uppercase;
+    font-weight: 100;
+    margin: 0px;
+    padding: 0px;
+    letter-spacing: 2px;
+}
+h1 {
+    font-size: 64px;
+}
+h2 {
+    font-size: 64px;
+}
+h3 {
+    font-size: 16px;
+}
+h4 {
+    font-size: 14px;
+}
+h5 {
+    font-size: 12px;
+}
+
+[data-theme="light"] {
+    color-scheme: light;
+    --main-background:      #ffffff;
+    --main-box-color:       #EDECE9;
+    --main-text-color:      #2B2727;
+}
+
+[data-theme="dark"] {
+    color-scheme: dark;
+    --main-background:  #000000;
+    --main-box-color:   #343232;
+    --main-text-color:  #fff;
+}
+
+
+.link {
+    text-decoration: none;
+    color: var(--main-text-color);
+    font: var(--main-font);
+}
+
+button {
+    border: 1px solid var(--main-text-color);
+    border-radius: var(--border-radius);
+    background: none;
+    background-color: none;
+    outline: none;
+    color: var(--main-text-color);
+    font: var(--main-font);
+    padding: 5px 30px;
+    margin: 10px;
+    width: fit-content;
+}
+button:hover {
+    background-color: var(--main-text-color);
+    color: var(--main-background);
+    padding: 5px 50px;
+    transition: padding 1s;
+}
+.icon {
+    aspect-ratio: 1;
+    width: auto;
+    object-fit: contain;
+}
+.icon-20 {
+    height: 20px;
+    margin-right: 10px;
+}
+.icon-30 {
+    height: 30px;
+    margin-right: 15px;
+}
+.icon-40 {
+    height: 40px;
+    margin-right: 20px;
+}
+/* Laptop screens */
+@media only screen and (max-height: 900px) {
+    h1 {
+        font-size: 42px;
+    }
+    h2 {
+        font-size: 42px;
+    }
+    h3 {
+        font-size: 14px;
+    }
+    h4 {
+        font-size: 10px;
+    }
+    h5, p {
+        font-size: 10px;
+    }
+    
+}
+/* ------------------------------------------------- */
+/* --- --- --- --- --- SIDE MENU --- --- --- --- --- */
+/* ------------------------------------------------- */
+.main-side-menu {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.mini-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0px;
+    text-align: center;
+}
+.profile-photo {
+    height: 100px;
+    aspect-ratio: 1/1;
+    width: auto;
+    border-radius: 50%;
+    border: 5px solid white;
+    margin-bottom: 20px;
+}
+.menu-options {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 100%;
+}
+
+/* extends link */
+.side-menu-link, .side-menu-link-div {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 15px;
+    width: calc(100% - 15px);
+    text-transform: uppercase;
+    font-size: 16px;
+}
+.selected {
+    --_size: 20px;
+    background-color: var(--main-background);
+    border-radius: var(--_size) 00px 0px var(--_size);
+    position: relative;
+}
+/* The newly created pseudo element for inverted border radius*/
+.selected::before, .selected::after {
+    content: "";
+    position: absolute;
+    -moz-transform: scale(-1, 1);
+    -webkit-transform: scale(-1, 1);
+    -o-transform: scale(-1, 1);
+    -ms-transform: scale(-1, 1);
+    transform: scale(-1, 1);
+    bottom: calc(0px - var(--_size));
+    right: 0px;
+    width: var(--_size);
+    aspect-ratio: 1;
+    background-image: 
+        radial-gradient(circle at 100% 100%, transparent var(--_size), var(--main-background) var(--_size));
+}
+  .selected::after {
+    -moz-transform: scale(-1, -1);
+    -webkit-transform: scale(-1, -1);
+    -o-transform: scale(-1, -1);
+    -ms-transform: scale(-1, -1);
+    transform: scale(-1, -1);
+    bottom: 0px;
+    top: calc(0px - var(--_size));
+}
+@keyframes changeWidth {
+    0% {width: 100%}
+    50% {width: 0%}
+    100% {width: 100%}
+}
+.social-media-links {
+    opacity: 0.5;
+    padding: 10px;
+}
+.copyright-text-div {
+    justify-self: flex-end;
+}
+.grey-text {
+    text-transform: uppercase;
+    font-size: 10px;
+    color: var(--inset-color);
+}
+
+/* ---------------------------------------------------- */
+/* --- --- --- --- --- ALL SECTIONS --- --- --- --- --- */
+/* ---------------------------------------------------- */
+main {
+    flex-grow: 1;
+    width: 100%;
+    height: calc(100svh - 20px);
+    display: flex;
+    flex-direction: column;
+}
+.section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    /* slightly bigger height for animation in later section */
+    min-height: calc(100svh - 20px);
+}
+.box {
+    border-radius: var(--border-radius);
+    background-color: var(--main-box-color);
+    padding: var(--border-radius);
+}
+.orange {
+    background-color: var(--main-accent);
+}
+.row {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+    margin-top: 10px;
+}
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.long {
+    display: flex;
+    flex-direction: row;
+}
+.long p, .long h2, .long h3, .long h4, .long h5, .long h6 {
+    display: inline;
+}
+.grow {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+.hor-scroll {
+    width: 100%;
+    overflow-x: scroll;
+}
+.image-header {
+    height: 180px;
+    width: 100%;
+    border-radius: var(--border-radius);
+    position: relative;
+}
+.main-title-div {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+}
+.main-title-div h1 {
+    display: inline;
+    color: white;
+}
+
+.image-header-image {
+    height: 180px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+}
+.image-header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: var(--main-accent);
+    opacity: 0.8;
+    border-radius: var(--border-radius);
+    mix-blend-mode: multiply;
+}
+.date-div {
+    position: absolute;
+    top: 0px;
+    right: 100px;
+    background-color: var(--main-background);
+    border-radius: 0px 0px var(--border-radius) var(--border-radius);
+    padding: 8px;
+}
+/* inverted border radius for date-div */
+.date-div::before, .date-div::after {
+    --_size: 30px;
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: calc(0px - var(--_size) + 1px);
+    width: var(--_size);
+    aspect-ratio: 1;
+    background-image: 
+        radial-gradient(circle at 100% 100%, transparent var(--_size), var(--main-background) var(--_size));  
+}
+.date-div::after {
+    -moz-transform: scale(-1, 1);
+    -webkit-transform: scale(-1, 1);
+    -o-transform: scale(-1, 1);
+    -ms-transform: scale(-1, 1);
+    transform: scale(-1, 1);
+    left: calc(0px - var(--_size) + 1px);
+}
+.date-number {
+    font-size: 40px;
+    color: var(--main-accent);
+    margin: auto;
+    text-align: center;
+}
+.under-image {
+    flex-grow: 1;
+    width: 100%;
+}
+/* -------------------------------------------------------------------------------- */
+/* --- --- --- --- --- --- --- --- --- OVERVIEW --- --- --- --- --- --- --- --- --- */
+/* -------------------------------------------------------------------------------- */
+.welcome-sign {
+
+}
+.main-statistics {
+
+}
+.graph {
+    max-height: 30svh;
+    width: auto;
+    object-fit: contain;
+}
+.circle-graph {
+    max-height: 150px;
+}
+.bar-outer-div {
+    margin: 10px 0px 10px 0px;
+}
+.bar-labels-div {
+    display: flex;
+    justify-content: space-between;
+    
+}
+.bar-inner-div {
+    position: relative;
+}
+.bar {
+    width: 100%;
+    height: 5px;
+    background-color: var(--inset-color);
+    border-radius: 2.5px;
+    
+}
+.value {
+    position: absolute;
+    background-color: var(--main-text-color);
+    top: 0px;
+}
+/* ------------------------------------------------------------------------------------ */
+/* --- --- --- --- --- --- --- --- --- WEEKLY GOALS --- --- --- --- --- --- --- --- --- */
+/* ------------------------------------------------------------------------------------ */
+
+/* ---------------------------------------------------------------------------------- */
+/* --- --- --- --- --- --- --- --- --- DAILY LOGS --- --- --- --- --- --- --- --- --- */
+/* ---------------------------------------------------------------------------------- */
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 120px;
+    width: 80px;
+}
+.bottom {
+    align-self: flex-end;
+    justify-self: flex-end;
+    text-align: end;
+}
+.bottom h3 {
+    font-size: 28px;
+}
+/* ------------------------------------------------------------------------------------ */
+/* --- --- --- --- --- --- --- --- --- MEAL TRACKER --- --- --- --- --- --- --- --- --- */
+/* ------------------------------------------------------------------------------------ */
+
+/* ---------------------------------------------------------------------------------------- */
+/* --- --- --- --- --- --- --- --- --- ACTIVITY TRACKER --- --- --- --- --- --- --- --- --- */
+/* ---------------------------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------------- */
+/* --- --- --- --- --- --- --- --- --- SETTINGS --- --- --- --- --- --- --- --- --- */
+/* -------------------------------------------------------------------------------- */
