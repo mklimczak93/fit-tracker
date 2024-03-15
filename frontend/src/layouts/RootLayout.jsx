@@ -61,32 +61,32 @@ export default function RootLayout() {
 
                 </div>
                 <div className="menu-options">
-                    <NavLink to="/dashboard/overview" className={ ({isActive}) => ( isActive ? "link side-menu-link selected" : "link side-menu-link")} >
-                        <img src = { OverviewIcon } className="icon icon-20"/>
+                    <NavLink to="/overview" className={ ({isActive}) => ( isActive ? "link side-menu-link selected" : "link side-menu-link")} >
+                        <img src = { OverviewIcon } className="icon icon-10"/>
                         <h4>Overview</h4>
                     </NavLink>
-                    <NavLink to="/dashboard/weekly-goals" className={ ({isActive}) => ( isActive ? "link side-menu-link selected" : "link side-menu-link")} >
-                        <img src = { WeeklyGoalsIcon } className="icon icon-20" />
+                    <NavLink to="/weekly-goals" className={ ({isActive}) => ( isActive ? "link side-menu-link selected" : "link side-menu-link")} >
+                        <img src = { WeeklyGoalsIcon } className="icon icon-10" />
                         <h4>Weekly Goals</h4>
                     </NavLink>
-                    <NavLink to="/dashboard/day-logs" className={ ({isActive}) => ( isActive ? "link side-menu-link selected" : "link side-menu-link")} >
-                        <img src = { DayLogsIcon } className="icon icon-20" />
+                    <NavLink to="/day-logs" className={ ({isActive}) => ( isActive ? "link side-menu-link selected" : "link side-menu-link")} >
+                        <img src = { DayLogsIcon } className="icon icon-10" />
                         <h4>Day Logs</h4>
                     </NavLink>
-                    <NavLink to="/dashboard/meal-tracker" className={ ({isActive}) => ( isActive ? "link side-menu-link selected" : "link side-menu-link")} >
-                        <img src = { MealTrackerIcon } className="icon icon-20" />
+                    <NavLink to="/meal-tracker" className={ ({isActive}) => ( isActive ? "link side-menu-link selected" : "link side-menu-link")} >
+                        <img src = { MealTrackerIcon } className="icon icon-10" />
                         <h4>Meal Tracker</h4>
                     </NavLink>
-                    <NavLink to="/dashboard/activity-tracker" className={ ({isActive}) => ( isActive ? "link side-menu-link selected" : "link side-menu-link")} >
-                        <img src = { ActivityTrackerIcon } className="icon icon-20" />
+                    <NavLink to="/activity-tracker" className={ ({isActive}) => ( isActive ? "link side-menu-link selected" : "link side-menu-link")} >
+                        <img src = { ActivityTrackerIcon } className="icon icon-10" />
                         <h4>Activity Tracker</h4>
                     </NavLink>
-                    <NavLink to="/dashboard/settings" className={ ({isActive}) => ( isActive ? "link side-menu-link selected" : "link side-menu-link")} >
-                        <img src = { SettingsIcon } className="icon icon-20" />
+                    <NavLink to="/settings" className={ ({isActive}) => ( isActive ? "link side-menu-link selected" : "link side-menu-link")} >
+                        <img src = { SettingsIcon } className="icon icon-10" />
                         <h4>Settings</h4>
                     </NavLink>      
                     <div className="side-menu-link-div" onClick={handleClick}>
-                        <img src = { LogOutIcon } className="icon icon-20" />
+                        <img src = { LogOutIcon } className="icon icon-10" />
                         <h4>Log Out</h4>
                     </div>
                 </div>
@@ -102,7 +102,7 @@ export default function RootLayout() {
                     </a>
                 </div>
                 <div className="copyright-text-div">
-                    <p className="grey-text">Fit.Tracker © 2024</p>
+                    <p className="app-name">Fit.Tracker © 2024</p>
                 </div>
             </div>
             <main>

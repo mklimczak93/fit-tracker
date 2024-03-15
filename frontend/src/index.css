@@ -27,6 +27,8 @@
     --main-text-color:      #2B2727;
     --main-accent:          #FD6738;
     --inset-color:          #BDBCBA;
+    --secondary-grey:       #E7E7E7;
+    --dark-grey:            #7a7a7a;
     /* font & others */
     --main-font:            normal 12px 'Violet Sans', serif;
     --border-radius:        15px;
@@ -49,18 +51,23 @@ html, body {
     font: var(--main-font);
     color: var(--main-text-color);
   }
-
+.App {
+    height: 100svh;
+    width: 100svw;
+    margin: 0px;
+    padding: 0px; 
+}
 #root {
-    max-height: 100svh;
-    max-width: 100svw;
     margin: 0px;
     padding: 0px;
-    overflow: hidden;
 }
 
 .root-layout {
-    padding: 10px;
+    padding: 30px 250px;
+    margin:0px;
     display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 10px;
 }
 
@@ -140,7 +147,11 @@ button:hover {
 .icon {
     aspect-ratio: 1;
     width: auto;
-    object-fit: contain;
+    object-fit:contain;
+}
+.icon-10 {
+    height: 10px;
+    margin-right: 5px;
 }
 .icon-20 {
     height: 20px;
@@ -157,13 +168,13 @@ button:hover {
 /* Laptop screens */
 @media only screen and (max-height: 900px) {
     h1 {
-        font-size: 42px;
+        font-size: 36px;
     }
     h2 {
-        font-size: 42px;
+        font-size: 32px;
     }
     h3 {
-        font-size: 14px;
+        font-size: 12px;
     }
     h4 {
         font-size: 10px;
@@ -177,6 +188,7 @@ button:hover {
 /* --- --- --- --- --- SIDE MENU --- --- --- --- --- */
 /* ------------------------------------------------- */
 .main-side-menu {
+    height: calc(100svh - 90px);
     width: 20%;
     display: flex;
     flex-direction: column;
@@ -190,7 +202,7 @@ button:hover {
     text-align: center;
 }
 .profile-photo {
-    height: 100px;
+    height: 80px;
     aspect-ratio: 1/1;
     width: auto;
     border-radius: 50%;
@@ -257,7 +269,7 @@ button:hover {
 .copyright-text-div {
     justify-self: flex-end;
 }
-.grey-text {
+.app-name {
     text-transform: uppercase;
     font-size: 10px;
     color: var(--inset-color);
@@ -266,27 +278,37 @@ button:hover {
 /* ---------------------------------------------------- */
 /* --- --- --- --- --- ALL SECTIONS --- --- --- --- --- */
 /* ---------------------------------------------------- */
+.dashboard-layout {
+    margin: 0px;
+    padding: 0px;
+}
 main {
-    flex-grow: 1;
     width: 100%;
-    height: calc(100svh - 20px);
+    height: calc(100svh - 60px);
     display: flex;
     flex-direction: column;
+    margin: 0px;
+    padding: 0px;
+    
 }
 .section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+    display: grid;
+    grid-template-rows: 2fr 1fr 3fr;
+    /* overflow: hidden; */
+    height: calc(100svh - 60px);
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    gap: 10px;
     /* slightly bigger height for animation in later section */
-    min-height: calc(100svh - 20px);
 }
+
 .box {
     border-radius: var(--border-radius);
     background-color: var(--main-box-color);
     padding: var(--border-radius);
 }
+
 .orange {
     background-color: var(--main-accent);
 }
@@ -294,8 +316,29 @@ main {
     display: flex;
     width: 100%;
     gap: 10px;
-    margin-top: 10px;
 }
+.row-1fr {
+    height: calc((100svh - 80px)/6);
+}
+.row-1-5fr {
+    height: calc((100svh - 80px)/4);
+}
+.row-2fr {
+    height: calc((100svh - 80px)/3);
+}
+.row-2-5fr {
+    height: calc((100svh - 80px)/2.4);
+}
+.row-2-5fr-10 {
+    height: calc((100svh - 80px)/2.4 - 10px);
+}
+.row-3fr {
+    height: calc((100svh - 80px)/2);
+}
+.row-3-5fr {
+    height: calc((100svh - 80px)/1.71);
+}
+
 .column {
     display: flex;
     flex-direction: column;
@@ -315,18 +358,23 @@ main {
 }
 .hor-scroll {
     width: 100%;
-    overflow-x: scroll;
+    /* overflow-x: scroll; */
+}
+.vert-scroll {
+    overflow-x: clip;
+    overflow-y: scroll;
 }
 .image-header {
-    height: 180px;
-    width: 100%;
+    /* height: 25svh;
+    width: 100%; */
     border-radius: var(--border-radius);
     position: relative;
+    
 }
 .main-title-div {
     position: absolute;
-    bottom: 30px;
-    left: 30px;
+    bottom: 15px;
+    left: 15px;
 }
 .main-title-div h1 {
     display: inline;
@@ -334,7 +382,7 @@ main {
 }
 
 .image-header-image {
-    height: 180px;
+    height: 100%;
     width: 100%;
     object-fit: cover;
     border-radius: var(--border-radius);
@@ -385,10 +433,7 @@ main {
     margin: auto;
     text-align: center;
 }
-.under-image {
-    flex-grow: 1;
-    width: 100%;
-}
+
 /* -------------------------------------------------------------------------------- */
 /* --- --- --- --- --- --- --- --- --- OVERVIEW --- --- --- --- --- --- --- --- --- */
 /* -------------------------------------------------------------------------------- */
@@ -432,16 +477,34 @@ main {
 /* ------------------------------------------------------------------------------------ */
 /* --- --- --- --- --- --- --- --- --- WEEKLY GOALS --- --- --- --- --- --- --- --- --- */
 /* ------------------------------------------------------------------------------------ */
-
+.weekly-goals {}
+.weekly-goals .row .orange {
+    flex-grow: 1;
+}
+.weekly-goals .row .orange p, h2 {
+    color: white;
+}
+.top-justified {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
 /* ---------------------------------------------------------------------------------- */
 /* --- --- --- --- --- --- --- --- --- DAILY LOGS --- --- --- --- --- --- --- --- --- */
 /* ---------------------------------------------------------------------------------- */
+/* extends section */
+.day-logs {
+    grid-template-rows: 2fr 1fr 1fr 2fr;
+}
 .card {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 120px;
-    width: 80px;
+    height: 80px;
+    width: 50px;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 0px;
 }
 .bottom {
     align-self: flex-end;
@@ -449,12 +512,69 @@ main {
     text-align: end;
 }
 .bottom h3 {
-    font-size: 28px;
+    font-size: 20px;
+}
+.pie-chart-box {
+    position: relative;
+}
+.pie-chart-text {
+    position: absolute;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
 }
 /* ------------------------------------------------------------------------------------ */
 /* --- --- --- --- --- --- --- --- --- MEAL TRACKER --- --- --- --- --- --- --- --- --- */
 /* ------------------------------------------------------------------------------------ */
+.kcal-intake-box, .kcal-burnt-box {
+    width: 50%;
+    overflow-x: hidden;
+    flex-grow: 1;
+}
+.record {
+    height: 50px;
+    min-width: 100%;
+    background-color: var(--secondary-grey);
+    display: flex;
+    margin: 10px 5px;
+    border-radius: 25px;
+}
+.meal-icon, .activity-icon {
+    background-color: white;
+    padding: 10px;
+    border-radius: 50%;
+}
+.record-description {
+    padding: 10px;
+}
+.record-calories {
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    background-color: white;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
 
+}
+.record-calories h3 {
+    font-size: 16px;
+    font-weight: bold;
+}
+.bottom-right {
+    height: 100%;
+    margin-left: auto;
+    margin-top: auto;
+    text-align: end;
+}
+.grey-text {
+    color: var(--dark-grey);
+    font-size: 10px;
+}
 /* ---------------------------------------------------------------------------------------- */
 /* --- --- --- --- --- --- --- --- --- ACTIVITY TRACKER --- --- --- --- --- --- --- --- --- */
 /* ---------------------------------------------------------------------------------------- */
@@ -462,3 +582,60 @@ main {
 /* -------------------------------------------------------------------------------- */
 /* --- --- --- --- --- --- --- --- --- SETTINGS --- --- --- --- --- --- --- --- --- */
 /* -------------------------------------------------------------------------------- */
+
+/* ----------------------------------------------------------------------------- */
+/* --- --- --- --- --- --- --- --- --- OTHER --- --- --- --- --- --- --- --- --- */
+/* ----------------------------------------------------------------------------- */
+
+/* --- GRAPHS --- */
+/* line graph */
+.MuiLineElement-root {
+
+}
+.MuiChartsAxis-bottom {
+    stroke-width: 0.3px;
+    filter: invert(51%) sepia(5%) saturate(16%) hue-rotate(15deg) brightness(92%) contrast(86%);
+}
+/* --- SCROLLBAR --- */
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    width: 0px;
+    background: transparent;
+    background-clip: padding-box;
+  }
+  
+  /* Handle */
+  /* not visible because of width - red left for monitoring */
+  ::-webkit-scrollbar-thumb {
+    width: 0px;
+    background: red;
+    background-clip: padding-box;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    width: 5px;
+    background: #adadad;
+    background-clip: padding-box;
+  }
+
+  /* --- INSPECTIONS --- */
+/* * {
+  outline: 1px solid #f00 !important;
+} */
+
+
+/* -------------------------------------------------- */
+/* --- --- --- --- --- ANIMATIONS --- --- --- --- --- */
+/* -------------------------------------------------- */
+
+/* animation: name duration timing-function delay iteration-count direction fill-mode play-state; */
+/* clouds-moving 180s linear infinite; 
+animation: dekstopMessagePopup 6s ease-in-out forwards;
+*/

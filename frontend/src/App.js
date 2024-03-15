@@ -18,12 +18,14 @@ import SettingsPage from "./pages/SettingsPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import ErrorPage from "./pages/ErrorPage";
-
 //layouts
 import RootLayout from "./layouts/RootLayout";
 import DashboardLayout from "./layouts/DashboardLayout";
 //css
 import './index.css';
+//mui calendar
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 
 
 function App() {
@@ -32,24 +34,24 @@ function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<RootLayout />}>
-        <Route path="/dashboard" element={<DashboardLayout />} >
+        <Route path="/" element={<DashboardLayout />} >
           <Route 
-            path="/dashboard/overview"
+            path="/overview"
             element={<OverviewPage/>} />
           <Route 
-            path="/dashboard/weekly-goals" 
+            path="/weekly-goals" 
             element={<WeeklyGoalsPage />} />
           <Route 
-            path="/dashboard/day-logs" 
+            path="/day-logs" 
             element={<DayLogsPage />} />
           <Route 
-            path="/dashboard/meal-tracker" 
+            path="/meal-tracker" 
             element={<MealTrackerPage />} />
           <Route 
-            path="/dashboard/activity-tracker" 
+            path="/activity-tracker" 
             element={<ActivityTrackerPage />} />  
           <Route 
-            path="/dashboard/settings" 
+            path="/settings" 
             element={<SettingsPage />} />  
         </Route>
         <Route path="/login-page" element={!user ? <LoginPage /> : <Navigate to="/dashboard"/> } />
@@ -61,10 +63,12 @@ function App() {
   );
 
   return (
-    <div className="App">
-      <RouterProvider router={router} />
-     
-    </div>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <div className="App">
+        <RouterProvider router={router} />
+      
+      </div>
+    </LocalizationProvider>
   );
 }
 
