@@ -2,7 +2,7 @@ import React from 'react';
 import '../index.css';
 import ImageHeader from '../components/ImageHeader';
 import DayLogCard from '../components/DayLogCard';
-import DayLogsPhoto from '../assets/project_photos/hero_photos/hero-photo-01.jpg';
+import DayLogsPhoto from '../assets/project_photos/hero_photos/hero-photo-04.jpg';
 import DayLogsIcon from '../assets/icons/project/day-logs-50-white.svg';
 import { PieChart } from '@mui/x-charts/PieChart';
 import MealRecord from '../components/MealRecord';
@@ -19,6 +19,9 @@ export default function DayLogsPage() {
         <div className="section day-logs">
             <ImageHeader title = "Day Logs" photo = { DayLogsPhoto } icon = { DayLogsIcon } />
             <div className="row row-1fr hor-scroll">
+                <DayLogCard date="02/03" value="70%" kcal="300" />
+                <DayLogCard date="02/03" value="70%" kcal="300" />
+                <DayLogCard date="02/03" value="70%" kcal="300" />
                 <DayLogCard date="02/03" value="70%" kcal="300" />
                 <DayLogCard date="02/03" value="70%" kcal="300" />
                 <DayLogCard date="02/03" value="70%" kcal="300" />
@@ -46,20 +49,20 @@ export default function DayLogsPage() {
                                 ],
                                 innerRadius: 30,
                                 outerRadius: 40,
-                                cx: 35,
-                                cy: 35,
+                                cx: 40,
+                                cy: 40,
                                 },
                             ]}
                             width={80}
                             height={80}
-                            
+                            margin={{ top: 0, bottom: 0, left: 0, right: 0 }}
                             slotProps={{ legend: { hidden: true, position: {vertical: 'middle', horizontal: 'middle'}, } }}
                         />
-
                     </div>
-                    <div className="box grow">
-                        <p>Calories ingested today</p>
-                        <div className="bottom-right">
+                    
+                    <div className="box grow relative">
+                        <p style={{maxWidth: '80px'}}>Calories ingested today</p>
+                        <div className="bottom-right-corner">
                             <p className="grey-text">out of 2000 limit</p>
                             <h2>1600</h2>
                         </div>
@@ -78,19 +81,19 @@ export default function DayLogsPage() {
                                 ],
                                 innerRadius: 30,
                                 outerRadius: 40,
-                                cx: 35,
-                                cy: 35,
+                                cx: 40,
+                                cy: 40,
                                 },
                             ]}
                             width={80}
                             height={80}
-                            
+                            margin={{ top: 0, bottom: 0, left: 0, right: 0 }}
                             slotProps={{ legend: { hidden: true, position: {vertical: 'middle', horizontal: 'middle'}, } }}
                         />
                     </div>
-                    <div className="box grow">
-                        <p>Calories burnt today</p>
-                        <div className="bottom-right">
+                    <div className="box grow relative">
+                        <p style={{maxWidth: '80px'}}>Calories burnt today</p>
+                        <div className="bottom-right-corner">
                             <p className="grey-text">out of 600 goal</p>
                             <h2>600</h2>
                         </div>

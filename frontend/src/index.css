@@ -23,7 +23,9 @@
 :root {
     /* main colors */
     --main-background:      #ffffff;
-    --main-box-color:       #EDECE9;
+    --main-gradient-bg:     linear-gradient(45deg, #EEEEEE, #DCDCDC);
+    --checkered-pattern:    linear-gradient(rgba(255, 255, 255, 0.7) .1em, transparent .1em), linear-gradient(90deg, rgba(255, 255, 255, 0.7) .1em, transparent .1em);
+    --main-box-color:       #F1F1F1;
     --main-text-color:      #2B2727;
     --main-accent:          #FD6738;
     --inset-color:          #BDBCBA;
@@ -36,10 +38,29 @@
 
 @media (prefers-color-scheme: dark) {
     :root {
+        --main-gradient-bg:     linear-gradient(45deg, #3b3b3b, #161616);
         --main-background:  #000000;
         --main-box-color:   #343232;
         --main-text-color:  #fff;
     } 
+}
+
+[data-theme="light"] {
+    color-scheme: light;
+    --main-background:      #ffffff;
+    --main-gradient-bg:     linear-gradient(45deg, #EEEEEE, #DCDCDC);
+    --checkered-pattern:    linear-gradient(rgba(255, 255, 255, 0.7) .1em, transparent .1em), linear-gradient(90deg, rgba(255, 255, 255, 0.7) .1em, transparent .1em);
+    --main-box-color:       #EDECE9;
+    --main-text-color:      #2B2727;
+}
+
+[data-theme="dark"] {
+    color-scheme: dark;
+    --main-background:      #141414;
+    --main-gradient-bg:     linear-gradient(45deg, #3b3b3b, #161616);
+    --checkered-pattern:    linear-gradient(rgba(75, 75, 75, 0.7) .1em, transparent .1em), linear-gradient(90deg, rgba(75, 75, 75, 0.7) .1em, transparent .1em);
+    --main-box-color:       #343232;
+    --main-text-color:      #fff;
 }
 
 /* ------------------------------------------------------------------------------------- */
@@ -50,12 +71,18 @@ html, body {
     padding: 0px;
     font: var(--main-font);
     color: var(--main-text-color);
+    background: var(--main-gradient-bg);
   }
 .App {
     height: 100svh;
     width: 100svw;
     margin: 0px;
-    padding: 0px; 
+    padding: 0px;
+    background-image: var(--checkered-pattern);
+    background-size: 3em 3em; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 #root {
     margin: 0px;
@@ -63,14 +90,74 @@ html, body {
 }
 
 .root-layout {
-    padding: 30px 250px;
-    margin:0px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+.dashboard-layout {
+    height: 90svh;
+    width: 70svw;
+    background-color: var(--main-background);
+    padding: 10px;
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.top-menu {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+    height: 22px;
+    margin: 0px;
+}
+.logo {
+    display: flex;
+    align-items: center;
+}
+.logo p {
+    margin-top: 2px;
+    text-transform: uppercase;
+    color: var(--dark-grey);
+}
+.main-screen {
+    width: 100%;
+    display: flex;
     gap: 10px;
 }
-
+.top-menu-buttons {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.toggle-button {
+    height: 15px;
+    width: 30px;
+    background-color: var(--dark-grey);
+    border-radius: 7.5px;
+    display: flex;
+    align-items: center;
+    margin-top: 0px;
+    margin-right: 7.5px;
+    cursor: pointer;
+}
+.toggle-button-circle {
+    height: 10px;
+    width: 10px;
+    border-radius: 5px;
+    background-color: white;
+    margin: 2.5px;
+}
+.lightModeCircle {
+    margin-right: auto;
+}
+.darkModeCircle {
+    background-color: var(--main-accent);
+    margin-left: auto;
+}
 p {
     font: var(--main-font);
     color: var(--main-text-color);
@@ -105,20 +192,13 @@ h5 {
     font-size: 12px;
 }
 
-[data-theme="light"] {
-    color-scheme: light;
-    --main-background:      #ffffff;
-    --main-box-color:       #EDECE9;
-    --main-text-color:      #2B2727;
+.big-title-96 {
+    font-size: 96px;
+    margin-bottom: 30px;
 }
-
-[data-theme="dark"] {
-    color-scheme: dark;
-    --main-background:  #000000;
-    --main-box-color:   #343232;
-    --main-text-color:  #fff;
+.small-p {
+    font-size: 8px;
 }
-
 
 .link {
     text-decoration: none;
@@ -126,7 +206,7 @@ h5 {
     font: var(--main-font);
 }
 
-button {
+button, .simple-button {
     border: 1px solid var(--main-text-color);
     border-radius: var(--border-radius);
     background: none;
@@ -134,11 +214,18 @@ button {
     outline: none;
     color: var(--main-text-color);
     font: var(--main-font);
+    text-transform: uppercase;
+    letter-spacing: 2px;
     padding: 5px 30px;
     margin: 10px;
     width: fit-content;
 }
-button:hover {
+.simple-button {
+    border: none;
+    background-color: var(--main-accent);
+    color: white;
+}
+button:hover, .simple-button:hover {
     background-color: var(--main-text-color);
     color: var(--main-background);
     padding: 5px 50px;
@@ -153,6 +240,10 @@ button:hover {
     height: 10px;
     margin-right: 5px;
 }
+.icon-15 {
+    height: 15px;
+    margin-right: 7.5px;
+}
 .icon-20 {
     height: 20px;
     margin-right: 10px;
@@ -161,10 +252,34 @@ button:hover {
     height: 30px;
     margin-right: 15px;
 }
+.icon-30-no-margin {
+    height: 30px;
+    margin-right: 0;
+}
 .icon-40 {
     height: 40px;
     margin-right: 20px;
 }
+.icon-svg-path {
+    fill: var(--dark-grey);
+}
+.margin-top-10 {
+    margin-top: 10px;
+}
+.margin-top-30 {
+    margin-top: 10px;
+}
+
+.margin-bottom-30 {
+    margin-bottom: 30px;
+}
+.margin-bottom-10 {
+    margin-bottom: 10px;
+}
+.relative {
+    position: relative;
+}
+
 /* Laptop screens */
 @media only screen and (max-height: 900px) {
     h1 {
@@ -182,14 +297,20 @@ button:hover {
     h5, p {
         font-size: 10px;
     }
-    
 }
+/* portrait orientation */
+@media (orientation: portrait) {
+    .root-layout {
+        width: 90svw;
+    }
+}
+
 /* ------------------------------------------------- */
 /* --- --- --- --- --- SIDE MENU --- --- --- --- --- */
 /* ------------------------------------------------- */
 .main-side-menu {
-    height: calc(100svh - 90px);
-    width: 20%;
+    height: calc(90svh - 60px);
+    width: 15svw;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -263,8 +384,7 @@ button:hover {
     100% {width: 100%}
 }
 .social-media-links {
-    opacity: 0.5;
-    padding: 10px;
+    display: flex;
 }
 .copyright-text-div {
     justify-self: flex-end;
@@ -278,13 +398,13 @@ button:hover {
 /* ---------------------------------------------------- */
 /* --- --- --- --- --- ALL SECTIONS --- --- --- --- --- */
 /* ---------------------------------------------------- */
-.dashboard-layout {
+.section-layout {
     margin: 0px;
     padding: 0px;
 }
 main {
     width: 100%;
-    height: calc(100svh - 60px);
+    height: calc(90svh - 52px);
     display: flex;
     flex-direction: column;
     margin: 0px;
@@ -295,7 +415,7 @@ main {
     display: grid;
     grid-template-rows: 2fr 1fr 3fr;
     /* overflow: hidden; */
-    height: calc(100svh - 60px);
+    height: calc(90svh - 52px);
     width: 100%;
     margin: 0px;
     padding: 0px;
@@ -318,35 +438,36 @@ main {
     gap: 10px;
 }
 .row-1fr {
-    height: calc((100svh - 80px)/6);
+    height: calc((90svh - 52px)/6);
 }
 .row-1-5fr {
-    height: calc((100svh - 80px)/4);
+    height: calc((90svh - 52px)/4);
 }
 .row-2fr {
-    height: calc((100svh - 80px)/3);
+    height: calc((90svh - 52px)/3);
 }
 .row-2-5fr {
-    height: calc((100svh - 80px)/2.4);
+    height: calc((90svh - 52px)/2.4);
 }
 .row-2-5fr-10 {
-    height: calc((100svh - 80px)/2.4 - 10px);
+    height: calc((90svh - 52px)/2.4 - 10px);
 }
 .row-3fr {
-    height: calc((100svh - 80px)/2);
+    height: calc((90svh - 52px)/2);
 }
 .row-3-5fr {
-    height: calc((100svh - 80px)/1.71);
+    height: calc((90svh - 52px)/1.71);
 }
 
 .column {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
 }
 .long {
     display: flex;
     flex-direction: row;
+    justify-content: flex-end;
 }
 .long p, .long h2, .long h3, .long h4, .long h5, .long h6 {
     display: inline;
@@ -356,13 +477,19 @@ main {
     flex-direction: column;
     flex-grow: 1;
 }
+
 .hor-scroll {
-    width: 100%;
-    /* overflow-x: scroll; */
+    width: 55svw;
+    max-width: 55svw;
+    overflow-x: scroll;
 }
 .vert-scroll {
     overflow-x: clip;
     overflow-y: scroll;
+}
+.small-padding {
+    padding: 7px;
+    border-radius: 10px;
 }
 .image-header {
     /* height: 25svh;
@@ -433,15 +560,71 @@ main {
     margin: auto;
     text-align: center;
 }
-
+.bottom-right-corner {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    text-align: end;
+}
+.top-right-corner {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+/* -------------------------------------------------------------------------------------- */
+/* --- --- --- --- --- --- --- --- --- FORMS --- --- --- --- --- --- --- --- ------------ */
+/* -------------------------------------------------------------------------------------- */
+.form-title {
+    margin-bottom: 30px;
+}
+.form-label {
+    font: var(--main-font);
+    letter-spacing: 2px;
+    color: var(--dark-grey);
+    margin-bottom: 5px;
+    font-size: 10px;
+}
+.form-input {
+    height: 25px;
+    border-radius: 5px;
+    min-width: 250px;
+    border: 1px solid var(--secondary-grey);
+    margin-bottom: 15px;
+    color: var(--dark-grey);
+}
+.error-input {
+    border-color: red;
+}
 /* -------------------------------------------------------------------------------- */
 /* --- --- --- --- --- --- --- --- --- OVERVIEW --- --- --- --- --- --- --- --- --- */
 /* -------------------------------------------------------------------------------- */
 .welcome-sign {
-
 }
-.main-statistics {
 
+.welcome-sign h2 {
+    display: flex;
+    align-content: center;
+}
+.welcome-sign p {
+    margin-top: 15px;
+}
+.welcome-sign button {
+    margin: 0px;
+    margin-top: auto;
+}
+.overview-numbers-column {
+    width: 250px;
+    display: flex;
+}
+.overview-numbers {
+    font-size: 24px;
+    font-weight: 600;
+}
+.overview-numbers-column p {
+    align-self: flex-end;
+    text-align: end;
+    margin-right: 10px;
+    margin-bottom: 4px;
 }
 .graph {
     max-height: 30svh;
@@ -452,8 +635,9 @@ main {
     max-height: 150px;
 }
 .bar-outer-div {
-    margin: 10px 0px 10px 0px;
+    margin: 15px 0px 1% 0px;
 }
+
 .bar-labels-div {
     display: flex;
     justify-content: space-between;
@@ -464,7 +648,7 @@ main {
 }
 .bar {
     width: 100%;
-    height: 5px;
+    height: 3px;
     background-color: var(--inset-color);
     border-radius: 2.5px;
     
@@ -474,6 +658,7 @@ main {
     background-color: var(--main-text-color);
     top: 0px;
 }
+
 /* ------------------------------------------------------------------------------------ */
 /* --- --- --- --- --- --- --- --- --- WEEKLY GOALS --- --- --- --- --- --- --- --- --- */
 /* ------------------------------------------------------------------------------------ */
@@ -482,7 +667,7 @@ main {
     flex-grow: 1;
 }
 .weekly-goals .row .orange p, h2 {
-    color: white;
+    
 }
 .top-justified {
     width: 100%;
@@ -494,17 +679,22 @@ main {
 /* ---------------------------------------------------------------------------------- */
 /* extends section */
 .day-logs {
+    width: 100%;
     grid-template-rows: 2fr 1fr 1fr 2fr;
 }
 .card {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 80px;
-    width: 50px;
+    height: calc((90svh - 52px)/6 - 20px);
+    width: 60px;
+    min-width: 60px;
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 7px;
     margin-bottom: 0px;
+}
+.card .bar-outer-div {
+    margin: 5px 0px 5px 0px;
 }
 .bottom {
     align-self: flex-end;
@@ -512,10 +702,11 @@ main {
     text-align: end;
 }
 .bottom h3 {
-    font-size: 20px;
+    font-size: 18px;
 }
 .pie-chart-box {
     position: relative;
+    padding: 10px;
 }
 .pie-chart-text {
     position: absolute;
@@ -565,30 +756,152 @@ main {
     font-size: 16px;
     font-weight: bold;
 }
-.bottom-right {
-    height: 100%;
-    margin-left: auto;
-    margin-top: auto;
-    text-align: end;
-}
 .grey-text {
     color: var(--dark-grey);
     font-size: 10px;
 }
+
+/* --- meal form --- */
+.meal-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0px;
+}
+.category-choice {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.category-choice-button {
+    display: flex;
+    padding: 10px 10px;
+    border: none;
+    background-color: var(--main-text-color);
+    border-radius: 10px;
+    margin: 0px;
+}
+.category-choice-button:hover {
+    padding: 10px 10px;
+    cursor: pointer;
+
+}
+.category-choice-button img {
+    margin: auto;
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(84deg) brightness(106%) contrast(101%);
+}
+
+.grid-2-2-vert {
+    display: grid;
+    grid-template-rows: 1fr 3fr;
+    grid-auto-flow: column;
+    margin: 0px;
+    margin-top: 20px;
+    gap: 0px 10px;
+    width: 100%;
+}
+.grid-2-2-vert input {
+    width: 50%;
+    min-width: 180px;
+    
+}
+.grid-2-3-hor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0px;
+    margin-top: 0px;
+}
+.meal-form .form-label {
+    font-size: 9px;
+    letter-spacing: 1px;
+    align-self: flex-start;
+    margin-bottom: 7px;
+}
+.meal-form .form-input {
+    height: 20px;
+    margin: 0px;
+    margin-bottom: 5px;
+}
+.meal-form .simple-button {
+    margin: 0px;
+    margin-top: 10px;
+}
+
 /* ---------------------------------------------------------------------------------------- */
 /* --- --- --- --- --- --- --- --- --- ACTIVITY TRACKER --- --- --- --- --- --- --- --- --- */
 /* ---------------------------------------------------------------------------------------- */
+.activity-tracker {
 
+}
+.activity-tracker .category-choice-button button {
+    padding: 5px;
+}
 /* -------------------------------------------------------------------------------- */
 /* --- --- --- --- --- --- --- --- --- SETTINGS --- --- --- --- --- --- --- --- --- */
 /* -------------------------------------------------------------------------------- */
 
+/* -------------------------------------------------------------------------------------- */
+/* --- --- --- --- --- --- --- --- --- LOGIN/REGISTER --- --- --- --- --- --- --- --- --- */
+/* -------------------------------------------------------------------------------------- */
+.login-page {
+    display: flex;
+}
+.small-box {
+    height: 70svh;
+    width: 400px;
+    background-color: var(--main-background);
+    border-radius: var(--border-radius);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.small-box-inner {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--main-box-color);
+    border-radius: 5px;
+    position: relative;
+}
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+.login-page .simple-button {
+    min-width: 250px;
+    margin: 10px 0px;
+
+}
+.login-page .grey-text {
+    margin-top: 10px;
+    text-decoration: underline;
+}
+
 /* ----------------------------------------------------------------------------- */
 /* --- --- --- --- --- --- --- --- --- OTHER --- --- --- --- --- --- --- --- --- */
 /* ----------------------------------------------------------------------------- */
+/* --- INFORMATION --- */
+.information, .help-section {
+    overflow-y: scroll;
+}
+.information h3, .information h2, .help-section h3, .help-section h2 {
+    padding: 0 15px;
+}
+.information-p {
+    padding: 15px;
+}
+
+
 
 /* --- GRAPHS --- */
-/* line graph */
+/* line/bar graph */
 .MuiLineElement-root {
 
 }
@@ -596,34 +909,70 @@ main {
     stroke-width: 0.3px;
     filter: invert(51%) sepia(5%) saturate(16%) hue-rotate(15deg) brightness(92%) contrast(86%);
 }
+.MuiBarAxis-bottom {
+    filter: invert(51%) sepia(5%) saturate(16%) hue-rotate(15deg) brightness(92%) contrast(86%);
+}
+.MuiChartsAxis-tick {
+    display: none;
+}
+.MuiChartsAxis-line {
+    display: none;
+}
+
+/* --- CALENDAR --- */
+.MuiDateCalendar-root {
+
+}
+
+.MuiPickersDay-root, .MuiPickersDay-today {
+
+}
+.Mui-selected {
+    background-color: var(--main-accent);
+}
+.Mui-hover {
+    display: none;
+}
+.Mui-focused {
+    /* not sure whether works*/
+}
+.MuiBarElement-root {
+
+}
+
+
+
 /* --- SCROLLBAR --- */
 
 /* width */
 ::-webkit-scrollbar {
-    width: 10px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
     width: 0px;
-    background: transparent;
-    background-clip: padding-box;
-  }
+    height: 0px;
+    background-color: yellow;
+}
   
-  /* Handle */
-  /* not visible because of width - red left for monitoring */
-  ::-webkit-scrollbar-thumb {
-    width: 0px;
-    background: red;
-    background-clip: padding-box;
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    width: 5px;
-    background: #adadad;
-    background-clip: padding-box;
-  }
+/* Track */
+::-webkit-scrollbar-track {
+width: 0px;
+background: transparent;
+background-clip: padding-box;
+}
+
+/* Handle */
+/* not visible because of width - red left for monitoring */
+::-webkit-scrollbar-thumb {
+width: 0px;
+/* background: red; */
+background: transparent;
+background-clip: padding-box;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+width: 5px;
+background: #adadad;
+background-clip: padding-box;
+}
 
   /* --- INSPECTIONS --- */
 /* * {

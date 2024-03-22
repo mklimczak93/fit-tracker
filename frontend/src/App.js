@@ -8,7 +8,6 @@ import {
 } from "react-router-dom";
 import { useAuthContext } from "./hooks/useAuthContext";
 // pages
-import HomePage from "./pages/HomePage";
 import OverviewPage from "./pages/OverviewPage";
 import WeeklyGoalsPage from "./pages/WeeklyGoalsPage";
 import DayLogsPage from "./pages/DayLogsPage";
@@ -18,42 +17,56 @@ import SettingsPage from "./pages/SettingsPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import ErrorPage from "./pages/ErrorPage";
+import HelpPage from "./pages/HelpPage";
 //layouts
 import RootLayout from "./layouts/RootLayout";
 import DashboardLayout from "./layouts/DashboardLayout";
+import SectionLayout from "./layouts/SectionLayout";
 //css
 import './index.css';
 //mui calendar
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import dayjs from 'dayjs';
+import updateLocale from 'dayjs/plugin/updateLocale';
+
 
 
 function App() {
   const { user } = useAuthContext();
+  
+
+  dayjs.extend(updateLocale)
+  dayjs.updateLocale('en', {
+      weekStart: 1,
+  })
   //creating different routes for each page
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<RootLayout />}>
-        <Route path="/" element={<DashboardLayout />} >
-          <Route 
-            path="/overview"
-            element={<OverviewPage/>} />
-          <Route 
-            path="/weekly-goals" 
-            element={<WeeklyGoalsPage />} />
-          <Route 
-            path="/day-logs" 
-            element={<DayLogsPage />} />
-          <Route 
-            path="/meal-tracker" 
-            element={<MealTrackerPage />} />
-          <Route 
-            path="/activity-tracker" 
-            element={<ActivityTrackerPage />} />  
-          <Route 
-            path="/settings" 
-            element={<SettingsPage />} />  
+        <Route path="/dashboard" element={<DashboardLayout />}>
+          <Route path="/dashboard/section" element={<SectionLayout />} >
+            <Route 
+              path="/dashboard/section/overview"
+              element={<OverviewPage/>} />
+            <Route 
+              path="/dashboard/section/weekly-goals" 
+              element={<WeeklyGoalsPage />} />
+            <Route 
+              path="/dashboard/section/day-logs" 
+              element={<DayLogsPage />} />
+            <Route 
+              path="/dashboard/section/meal-tracker" 
+              element={<MealTrackerPage />} />
+            <Route 
+              path="/dashboard/section/activity-tracker" 
+              element={<ActivityTrackerPage />} />  
+            <Route 
+              path="/dashboard/section/settings" 
+              element={<SettingsPage />} />  
+          </Route>
         </Route>
+        <Route path="/help" element={<HelpPage />} />
         <Route path="/login-page" element={!user ? <LoginPage /> : <Navigate to="/dashboard"/> } />
         <Route path="/register-page" element={!user ? <RegisterPage /> : <Navigate to="/dashboard" />} />
         {/* error catching */}

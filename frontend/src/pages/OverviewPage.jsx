@@ -14,7 +14,7 @@ export default function HomePage() {
     const dataset = [
         { in: 2500, out: 2300, month: 'Jan' },
         { in: 2300, out: 2400, month: 'Feb' },
-        { in: 3000, out: 2200, month: 'Mar' },
+        { in: 2700, out: 2200, month: 'Mar' },
         { in: 2200, out: 1800, month: 'Apr' },
         { in: 2100, out: 2000, month: 'Mai' },
         { in: 2000, out: 2300, month: 'Jun' },
@@ -36,7 +36,7 @@ export default function HomePage() {
             <ImageHeader title = "Overview" photo = { OverviewPhoto } icon = { OverviewIcon }/>
 
             <div className="row row-1-5fr">
-                <div className="box orange grow">
+                <div className="box orange grow welcome-sign">
                     <h2>
                         <img src= { ProjectLogo } className="icon icon-40" />
                         Hi, Neville.
@@ -45,19 +45,21 @@ export default function HomePage() {
                     <button>Log your progress</button>
 
                 </div>
+                <div className="column overview-numbers-column">
+                    <div className="box orange long small-padding">
+                        <p>days</p>
+                        <h2 className="overview-numbers">134</h2>
+                    </div>
+                    <div className="box orange long small-padding">
+                        <p>fat burnt</p>
+                        <h2 className="overview-numbers">7.500</h2>
+                    </div>
+                    <div className="box orange long small-padding">
+                        <p>calories burnt</p>
+                        <h2 className="overview-numbers">51 600</h2>
+                    </div>
+                </div>
                 
-                <div className="box orange">
-                    <p>days</p>
-                    <h2>134</h2>
-                </div>
-                <div className="box orange">
-                    <p>fat burnt</p>
-                    <h2>7.500</h2>
-                </div>
-                <div className="box orange">
-                    <p>calories burnt</p>
-                    <h2>51 600</h2>
-                </div>
                 
             </div>
 
@@ -105,8 +107,9 @@ export default function HomePage() {
                         ]}
                         leftAxis={null}
                         dataset={dataset}
-                        width={500}
+                        width={550}
                         height={300}
+                        margin={{ top: 30, bottom: 30, left: 0, right: 0 }}
                         />
                 </div>
             </div>
